@@ -1,0 +1,33 @@
+<mvc:View controllerName="project1.controller.Detail" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:c="sap.ui.core" displayBlock="true" height="100%" busyIndicatorDelay="0" xmlns:semantic="sap.m.semantic">
+	<semantic:DetailPage>
+		<semantic:subHeader>
+			<Bar>
+				<contentLeft>
+					<Image src="{chatPersonal>/photo}" width="2rem"></Image>
+					<Text text="{chatPersonal>/contactName}"></Text>
+				</contentLeft>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:content>
+			<List id="idList" items="{ path: 'chatPersonal>/allMessages/',  sorter: { path: 'date', descending: false, group: '.getDate'}, 
+		groupHeaderFactory: '.getGroupHeader'}">
+		<StandardListItem
+			icon="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
+			formatter: '.formatter.formatIcon'
+}"
+			title="{chatPersonal>text}" 
+		>
+		<customData>
+		<c:CustomData writeToDom="true" key="iconColor" value="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
+			formatter: '.formatter.formatIconColor' 
+}" />
+
+		</customData>
+		</StandardListItem>
+			</List>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Input id="addMessage" placeholder="Aa" width="99%"></Input>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

@@ -1,0 +1,138 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "project1",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.7.1",
+            "toolsId": "5384e890-b7ee-4be0-b7e5-e6718f6ccec6"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "project1.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "dataSources": {
+                "tableData_alias": {
+                    "uri": "model/Object.json",
+                    "type": "JSON"
+                }
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/style.css"
+            }]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "project1.view",
+                "controlAggregation": "detailPages",
+                "controlId": "idAppControl",
+                "clearControlAggregation": false
+            },
+            "routes": [{
+                    "pattern": "",
+                    "name": "master",
+                    "target": [
+                        "master"
+                    ]
+                },
+                {
+                    "pattern": "detail/{chat}",
+                    "name": "detail",
+                    "target": [
+                        "master",
+                        "detail"
+                    ]
+                }
+            ],
+            "targets": {
+                "master": {
+                    "viewType": "XML",
+                    "controlAggregation": "masterPages",
+                    "viewId": "Master",
+                    "viewName": "Master",
+                    "viewLevel": 1
+                },
+                "detail": {
+                    "viewType": "XML",
+                    "viewId": "Detail",
+                    "viewName": "Detail",
+                    "viewLevel": 2
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "project1.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

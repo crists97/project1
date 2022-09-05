@@ -1,0 +1,10 @@
+/* Enter your custom styles here */
+
+.sapMSLIImgNoInset,
+.sapMSLIImg {
+    border-radius: 5.25rem;
+}
+
+[data-iconColor='blue'] .sapUiIcon {
+    color: blue !important;
+}

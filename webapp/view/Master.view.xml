@@ -1,0 +1,16 @@
+<mvc:View controllerName="project1.controller.Master" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" displayBlock="true" height="100%" busyIndicatorDelay="0" xmlns:semantic="sap.m.semantic">
+	<semantic:MasterPage showFooter="false">
+		<semantic:subHeader>
+			<Bar>
+				<contentMiddle>
+					<SearchField liveChange="onSearch" showRefreshButton="{= !${device>/support/touch}}" value="" width="100%" />
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:content>
+			<List id="idList" mode="SingleSelectMaster" selectionChange="onSelectionList" items="{chatModel>/}">
+				<StandardListItem title="{chatModel>contactName}" description="{= ${chatModel>allMessages/0/sendMessage} === true ?  ${i18n>lblYou} :  ''} {chatModel>allMessages/0/text}" icon="{chatModel>photo}" iconDensityAware="false" iconInset="false" type="Navigation" />
+			</List>
+		</semantic:content>
+	</semantic:MasterPage>
+</mvc:View>
