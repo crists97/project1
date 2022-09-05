@@ -35,6 +35,8 @@ sap.ui.define([
                     }
                     return 0;
                 };
+            sendModel = this.formatDates(sendModel);
+            receivedModel = this.formatDates(receivedModel);
             for (let i = 0; i < chatModel.length; i++) {
                 messagesSend = null;
                 messagesRecived = null;
@@ -58,7 +60,15 @@ sap.ui.define([
                 for (let j = 0; j < messagesRecived.length; j++) {
                     allMessages.push(messagesRecived[j]);
                 }
-                allMessages.sort(compare);
+                allMessages.sort(function compare(a, b) {
+                    if (a.date < b.date) {
+                        return -1;
+                    }
+                    if (a.date > b.date) {
+                        return 1;
+                    }
+                    return 0;
+                });
                 chatModel[i].allMessages = allMessages;
                 chatModel[i].photo = "/model/resources/" + chatModel[i].photo.replace("images", "image");
                 if ((messagesSend.length != 0 && messagesRecived.length != 0 && messagesSend[0].date > messagesRecived[0].date) || (messagesSend.length != 0 && messagesSend[0].date && messagesRecived.length === 0)) {
@@ -73,6 +83,8 @@ sap.ui.define([
                         chatModel[i].Person = this.getResourceBundle().getText("lblYou");
                     }
                 }
+                if (allMessages[0])
+                    chatModel[i].LastMessage = allMessages[0].text;
                 modelFinal.push(chatModel[i]);
             }
 
@@ -106,6 +118,20 @@ sap.ui.define([
             var phone = model[path].phone;
 
             this.getOwnerComponent().getRouter().navTo("detail", { chat: phone });
+        },
+        formatDates: function(data) {
+            var date = "";
+            for (var j = 0; j < data.length; j++) {
+                let firstData = data[j].date.replace("T", " ");
+                let dateNew = firstData.split(" ")[0];
+                dateNew = dateNew.split("/")[1] + "/" + dateNew.split("/")[0] + "/" + dateNew.split("/")[2];
+                data[j].date = dateNew + " " + firstData.split(" ")[1];
+                date = date = new Date(data[j].date);
+                data[j].dateNum = parseFloat(("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) +
+                    date.getFullYear() + "" + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2))
+            }
+
+            return data;
         }
 
     });

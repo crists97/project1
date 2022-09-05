@@ -32,12 +32,13 @@ sap.ui.define([
 
             var model = modelChat.filter(object => object.phone === this.phone);
             this.getView().setModel(new JSONModel(model[0]), "chatPersonal");
+            this.scrollList();
+        },
+        scrollList: function() {
             var oList = this.byId("idList");
             setTimeout(function() {
                 oList.scrollToIndex(oList.getItems().length - 1);
-            }, 1000);
-
-
+            }, 200);
         },
         navButtonPress: function() {
             this.getOwnerComponent().getRouter().navTo("master");
@@ -49,8 +50,8 @@ sap.ui.define([
             if (index === -1) return;
 
             var date = new Date();
-            var datestring = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" +
-                date.getFullYear() + "T" + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
+            var datestring = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" +
+                date.getFullYear() + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2);
 
             var object = {
                 "id": Math.floor(Math.random() * 10000000000),
@@ -60,11 +61,19 @@ sap.ui.define([
                 "sent": true,
                 "delivered": false,
                 "read": false,
-                "sendMessage": true
+                "sendMessage": true,
+                "seconds": ("0" + date.getSeconds()).slice(-2),
+                "dateNum": parseFloat(("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) +
+                    date.getFullYear() + "" + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2))
             };
             model[index].MessagesSend.push(object);
-            model[index].allMessages.unshift(object);
 
+            if (model[index].allMessages[0] && model[index].allMessages[0].date === datestring) {
+                var indexData = model[index].allMessages.filter(object => object.date === datestring).length;
+                model[index].allMessages.splice(indexData, 0, object);
+            } else {
+                model[index].allMessages.unshift(object);
+            }
             model[index].Person = this.getResourceBundle().getText("lblYou");
             model[index].LastMessage = text;
             this.getOwnerComponent().getModel("chatModel").refresh()

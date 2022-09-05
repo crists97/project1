@@ -5,6 +5,15 @@
     border-radius: 5.25rem;
 }
 
+.sapMImg {
+    border-radius: 5.25rem !important;
+}
+
 [data-iconColor='blue'] .sapUiIcon {
     color: blue !important;
+}
+
+.sapMGHLITitle,
+.sapMGHLICounter {
+    padding-left: 40%;
 }

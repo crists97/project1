@@ -9,7 +9,7 @@
 			</Bar>
 		</semantic:subHeader>
 		<semantic:content>
-			<List id="idList" items="{ path: 'chatPersonal>/allMessages/',  sorter: { path: 'date', descending: false, group: '.getDate'}, 
+			<List id="idList" items="{ path: 'chatPersonal>/allMessages/',  sorter: { path: 'dateNum', descending: false, group: '.getDate'}, 
 		groupHeaderFactory: '.getGroupHeader'}">
 		<StandardListItem
 			icon="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],

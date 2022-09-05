@@ -9,7 +9,7 @@
 		</semantic:subHeader>
 		<semantic:content>
 			<List id="idList" mode="SingleSelectMaster" selectionChange="onSelectionList" items="{chatModel>/}">
-				<StandardListItem title="{chatModel>contactName}" description="{= ${chatModel>allMessages/0/sendMessage} === true ?  ${i18n>lblYou} :  ''} {chatModel>allMessages/0/text}" icon="{chatModel>photo}" iconDensityAware="false" iconInset="false" type="Navigation" />
+				<StandardListItem title="{chatModel>contactName}" description="{= ${chatModel>allMessages/0/sendMessage} === true ?  ${i18n>lblYou} :  ''} {chatModel>LastMessage}" icon="{chatModel>photo}" iconDensityAware="false" iconInset="false" type="Navigation" />
 			</List>
 		</semantic:content>
 	</semantic:MasterPage>
