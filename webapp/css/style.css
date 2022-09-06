@@ -9,11 +9,45 @@
     border-radius: 5.25rem !important;
 }
 
-[data-iconColor='blue'] .sapUiIcon {
-    color: blue !important;
-}
-
 .sapMGHLITitle,
 .sapMGHLICounter {
     padding-left: 40%;
+}
+
+.sapMLIBFocusable:focus {
+    outline: 0rem !important;
+}
+
+.sapMSLIDiv {}
+
+.lineSend {
+    place-content: end !important;
+    text-align: end;
+    background-color: rgb(202, 255, 248) !important;
+}
+
+.iconSend {
+    width: 50%;
+    text-align: right;
+}
+
+[data-iconColor='blue'] .sapUiIcon {
+    color: blue !important;
+    width: 50%;
+    text-align: right;
+}
+
+[data-iconColor='normal'] .sapUiIcon {
+    width: 50%;
+    text-align: right;
+}
+
+.sapUiSizeCompact .sapMSLI {
+    border-radius: 5rem !important;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.sapMListUl .sapMLIB.sapMGHLI {
+    color: rgb(4, 2, 119);
 }

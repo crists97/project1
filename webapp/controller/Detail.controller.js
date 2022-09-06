@@ -33,6 +33,20 @@ sap.ui.define([
             var model = modelChat.filter(object => object.phone === this.phone);
             this.getView().setModel(new JSONModel(model[0]), "chatPersonal");
             this.scrollList();
+            this.paintlines();
+
+        },
+
+        paintlines: function() {
+            var oList = this.byId("idList");
+            var item = null;
+            for (var i = 0; i < oList.getItems().length; i++) {
+                item = oList.getItems()[i].getBindingContext("chatPersonal");
+                if (item && item.getModel("chatSet").getProperty(item.sPath).sent) {
+                    oList.getItems()[i].addStyleClass("lineSend");
+                }
+            }
+
         },
         scrollList: function() {
             var oList = this.byId("idList");
@@ -74,7 +88,6 @@ sap.ui.define([
             } else {
                 model[index].allMessages.unshift(object);
             }
-            model[index].Person = this.getResourceBundle().getText("lblYou");
             model[index].LastMessage = text;
             this.getOwnerComponent().getModel("chatModel").refresh()
             this.onRouteMatched(null);

@@ -71,18 +71,6 @@ sap.ui.define([
                 });
                 chatModel[i].allMessages = allMessages;
                 chatModel[i].photo = "/model/resources/" + chatModel[i].photo.replace("images", "image");
-                if ((messagesSend.length != 0 && messagesRecived.length != 0 && messagesSend[0].date > messagesRecived[0].date) || (messagesSend.length != 0 && messagesSend[0].date && messagesRecived.length === 0)) {
-                    chatModel[i].Person = this.getResourceBundle().getText("lblYou");
-
-                } else if ((messagesRecived.length != 0 && messagesSend.length != 0 && messagesRecived[0].date > messagesSend[0].date) || (messagesRecived.length != 0 && messagesRecived[0].date && messagesSend.length === 0)) {
-                    chatModel[i].Person = "";
-                } else {
-                    if (messagesRecived.length != 0) {
-                        chatModel[i].Person = "";
-                    } else if (messagesSend.length != 0) {
-                        chatModel[i].Person = this.getResourceBundle().getText("lblYou");
-                    }
-                }
                 if (allMessages[0])
                     chatModel[i].LastMessage = allMessages[0].text;
                 modelFinal.push(chatModel[i]);

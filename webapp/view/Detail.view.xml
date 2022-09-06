@@ -11,19 +11,16 @@
 		<semantic:content>
 			<List id="idList" items="{ path: 'chatPersonal>/allMessages/',  sorter: { path: 'dateNum', descending: false, group: '.getDate'}, 
 		groupHeaderFactory: '.getGroupHeader'}">
-		<StandardListItem
-			icon="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
+				<StandardListItem icon="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
 			formatter: '.formatter.formatIcon'
-}"
-			title="{chatPersonal>text}" 
-		>
-		<customData>
-		<c:CustomData writeToDom="true" key="iconColor" value="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
+}" title="{chatPersonal>text}">
+					<customData>
+						<c:CustomData writeToDom="true" key="iconColor" value="{parts:[{path:'chatPersonal>read'},{path:'chatPersonal>delivered'}],
 			formatter: '.formatter.formatIconColor' 
 }" />
 
-		</customData>
-		</StandardListItem>
+					</customData>
+				</StandardListItem>
 			</List>
 		</semantic:content>
 		<semantic:customFooterContent>
