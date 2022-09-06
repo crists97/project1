@@ -24,7 +24,7 @@
 			</List>
 		</semantic:content>
 		<semantic:customFooterContent>
-			<Input id="addMessage" placeholder="Aa" width="99%"></Input>
+			<Input id="addMessage" placeholder="Aa" width="95%"></Input>
 		</semantic:customFooterContent>
 	</semantic:DetailPage>
 </mvc:View>
